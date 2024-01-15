@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- AOS, Jquery, AnimateCSS -->
+    <link rel="stylesheet" href="static/aos.css" />
+    <script src="static/aos.js"></script>
+    <script src="static/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename = 'animate.css') }}" />
+
+    <!-- Bootstrap CSS -->
+    <link href="{{ url_for('static', filename = 'bootstrap.min.css') }}" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="{{ url_for('static', filename = 'style.css') }}" rel="stylesheet">
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" href="style.css">
+
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <title>{% block title %}{% endblock %} | Sasha's Site</title>
+
+</head>
+
+<body>
+    <!-- Navigation -->
+    {% include 'menu.html' %}
+
+    <div id="body">
+        <!-- Page Content -->
+        <div class="container-flex">
+            <div class="row justify-content-center justify-content-md-start">
+                {% block page_content %}{% endblock %}
+            </div>
+        </div>
+        {% include 'footer.html' %}
+    </div>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="{{ url_for('static', filename = 'bootstrap.bundle.min.js') }}"></script>
+</body>
+
+</html>
