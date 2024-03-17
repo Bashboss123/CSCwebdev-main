@@ -1,0 +1,29 @@
+:root {
+    --primary-graphics-light: #b0bcc9;
+    --primary-graphics-dark: #a6d0e2;
+    --primary-graphics-mid: #b0c2c9;
+    --primary-text: #e6eff7;
+    --secondary-text: #bfd9f2;
+}
+
+img {
+    width: 75%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    height: 50%;
+    overflow: hidden;
+
+}
+
+#welcome {
+    text-align: center;
+    font-size: 2em;
+    color: var(--primary-text);
+    position:absolute;
+    z-index: 2;
+}
+
+#intro_div {
+    position: sticky;
+}
