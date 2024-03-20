@@ -6,24 +6,54 @@
     --secondary-text: #bfd9f2;
 }
 
-img {
-    width: 75%;
+#welcome_image {
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     display: block;
-    height: 50%;
     overflow: hidden;
+    opacity: 0.5;
+    height: 850px;
 
 }
 
 #welcome {
-    text-align: center;
-    font-size: 2em;
-    color: var(--primary-text);
-    position:absolute;
+    position: relative;
+    color: rgba(0, 0, 0, 0.735);
     z-index: 2;
+    font-size: 100px;
+    text-align: center;
+    top: 300px;
+    overflow: hidden;
+
 }
 
 #intro_div {
     position: sticky;
+    width: 100%;
+}
+
+#about {
+    text-align: center;
+}
+
+#footer {
+    width: 100%;
+    background-color: yellow;
+    z-index: 100;
+    height: 10lh;
+}
+
+.arrow {
+    width: 75px;
+    position: absolute;
+    bottom: 25px;
+    left: 47.5%;
+    display: block;
+    opacity: 0.5;
+}
+
+.arrow:hover {
+    opacity: 1.5;
+    width: 80px;
 }
