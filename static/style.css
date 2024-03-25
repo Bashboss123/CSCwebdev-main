@@ -6,43 +6,37 @@
     --secondary-text: #bfd9f2;
 }
 
-#welcome_image {
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    overflow: hidden;
-    opacity: 0.5;
-    height: 850px;
-
+#top {
+    position: static;
 }
 
-#welcome {
+#top img {
     position: relative;
-    color: rgba(0, 0, 0, 0.735);
+    opacity: 0.5;
+    max-width: 100%;
+    max-height: 100%;
+    margin-top: -100;
+}
+
+#top p {
+    position: sticky;
+    color: rgb(110, 129, 236);
     z-index: 2;
     font-size: 100px;
     text-align: center;
-    top: 300px;
     overflow: hidden;
-
-}
-
-#intro_div {
-    position: sticky;
-    width: 100%;
+    top: 50px;
 }
 
 #about {
     text-align: center;
 }
 
-#footer {
-    width: 100%;
-    background-color: yellow;
-    z-index: 100;
-    height: 10lh;
+#about p {
+    font-size: 20px;
+
 }
+
 
 .arrow {
     width: 75px;
@@ -56,4 +50,15 @@
 .arrow:hover {
     opacity: 1.5;
     width: 80px;
+}
+
+#footer {
+    width: 100%;
+    background-color: rgb(116, 60, 29);
+    z-index: 100;
+    height: 10lh;
+}
+
+#footer .row {
+    margin-top: 50px;
 }
