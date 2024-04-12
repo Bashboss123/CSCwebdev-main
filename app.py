@@ -32,7 +32,7 @@ def home():
 
 @app.route('/<page>')
 def pages(page):
-    if page in ['home']:
+    if page in ['events']:
         return flask.redirect("/", code=302)
     return render_template(str(Path('pages')) + '/' + page.lower() + '.html', pagename=page.lower())
 
