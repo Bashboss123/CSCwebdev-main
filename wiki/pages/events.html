@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset = "UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CS Club Events</title>
+</head>
+
+
+<style>
+    body {
+        background-color: #f0f0f0; 
+    }
+    .event {
+        background-color: #ffffff; 
+        border: 1px solid #cccccc; 
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .previousevent {
+        background-color: aquamarine;
+        border: 5px dashed black;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+
+<body>
+<h1>Here are some of the CS Club Events!</h1>
+<h2>Previous CS Events</h2>
+</body>
+
+<div class = "container">
+    <div class = "row">
+        <div class="col-md-8 offset-md-2">
+            <div class = "previousevent">
+                <div class = "p-2">Club Member Competitions:</div>
+                <hr>
+                <div class = "p-2">-Winter Break Advent of Code</div>
+                </div>
+            <div class = "previousevent">
+                <div class = "p-2">Conferences With Web Developers:</div>
+                <hr>
+                <div class = "p-2">-Interview with Cybernut CEO!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% extends "layout.html" %}
+
+{% block title %}ASIJ CSC{% endblock %}
+{% block background %}{% endblock %}
+{% block lead %}{% endblock %}
+
+{% block page_content %}
+
+<body>
+    <div>
+        <p>Upcoming events</p>
+    </div>
+</body>/*
+
+
+{% endblock %}
+
+{% extends "layout.html" %}
+
+{% block title %}ASIJ CSC - Events{% endblock %}
+
+{% block background %}
+<style>
+    body {
+        background-color: #f0f0f0; 
+    }
+    .event {
+        background-color: #ffffff; 
+        border: 1px solid #cccccc; 
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+{% endblock %}
+
+{% block lead %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <h1>Upcoming Events</h1>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block page_content %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="event">
+                <h3>Event 1: Workshop on HTML Basics</h3>
+                <p>Date: April 5, 2024</p>
+                <p>Time: 10:00 AM - 12:00 PM</p>
+                <p>Location: Room 101</p>
+            </div>
+            <div class="event">
+                <h3>Event 2: JavaScript Fundamentals Seminar</h3>
+                <p>Date: April 12, 2024</p>
+                <p>Time: 1:00 PM - 3:00 PM</p>
+                <p>Location: Auditorium</p>
+            </div>
+            <div class="event">
+                <h3>Event 3: CSS Styling Workshop</h3>
+                <p>Date: April 20, 2024</p>
+                <p>Time: 9:30 AM - 11:30 AM</p>
+                <p>Location: Room 201</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
