@@ -5,6 +5,30 @@
 {% block lead %}{% endblock %}
 
 {% block page_content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to ASIJ CSC</title>
+    <link rel="stylesheet" href="static/css/style.css">
+</head>
+<body>
+    <div id="intro_div">
+        <p id="welcome">Welcome to the ASIJ CSC Website!</p>
+        <img id="welcome_image" src="static/assets/club_photo.jpeg" alt="Club Photo">
+        <a href="#about" class="arrow-link">
+            <svg class="arrow" viewBox="0 0 24 24" focusable="false">
+                <path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path>
+                <path d="M0-.75h24v24H0z" fill="none"></path>
+            </svg>
+        </a>
+    </div>
+    
+    <div id="about">
+        <h1>What is the ASIJ CSC?</h1>
+        <p>The ASIJ CSC is...</p>
+    </div>
 
 
 
@@ -21,5 +45,6 @@
     </div>
 </div>
 
-
+</body>
+</html>
 {% endblock %}
