@@ -6,6 +6,9 @@
 
 {% block page_content %}
 
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -13,7 +16,7 @@
   <title>Event Calendar</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-  <link rel="stylesheet" href="dist/calendar-gc.css">
+  <link rel="stylesheet" href="calendar-gc.css">
   <style>
     html,
     body {
@@ -25,67 +28,92 @@
 
 <body>
   <div id="calendar" style="padding: 1rem;"></div>
-</body>
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-<script src="dist/calendar-gc.min.js"></script>
-<script>
-  $(function (e) {
-    var calendar = $("#calendar").calendarGC({
-      dayBegin: 0,
-      prevIcon: '&#x3c;',
-      nextIcon: '&#x3e;',
-      onPrevMonth: function (e) {
-        console.log("prev");
-        console.log(e);
-      },
-      onNextMonth: function (e) {
-        console.log("next");
-        console.log(e);
-      },
-      events: getHoliday(),
-      onclickDate: function (e, data) {
-        console.log(e, data);
-      }
-    });
-  });
+  
 
-  function getHoliday() {
-    var d = new Date();
-    var totalDay = new Date(d.getFullYear(), d.getMonth(), 0).getDate();
-    var events = [];
-
-    for (var i = 1; i <= totalDay; i++) {
-      var newDate = new Date(d.getFullYear(), d.getMonth(), i);
-      if (newDate.getDay() == 0) {   //if Sunday
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    
+  <script src="calendar-gc.min.js"></script>
+  <script>
+    function EventSplitter(record) {
+      let events = [];
+      
+      if (record && record.eventDate) {
         events.push({
-          date: newDate,
-          eventName: "Sunday free",
+          date: new Date(record.eventDate),
+          eventName: record.eventTitle,
           className: "badge bg-danger",
           onclick(e, data) {
             console.log(data);
           },
-          dateColor: "red"
+          dateColor: record.eventColor
         });
       }
-      if (newDate.getDay() == 6) {   //if Saturday
-        events.push({
-          date: newDate,
-          eventName: "Saturday free",
-          className: "badge bg-danger",
-          onclick(e, data) {
-            console.log(data);
-          },
-          dateColor: "red"
-        });
+      
+      if (record && record.record) {
+        events = events.concat(EventSplitter(record.record));
       }
-
+      
+      return events;
     }
-    return events;
-  }
+    $(function (e) {
+      var calendar = $("#calendar").calendarGC({
+        dayBegin: 0,
+        prevIcon: '&#x3c;',
+        nextIcon: '&#x3e;',
 
-  getHoliday()
-</script>
+        onPrevMonth: function (e) {
+          console.log("prev");
+          console.log(e);
+        },
+        onNextMonth: function (e) {
+          console.log("next");
+          console.log(e);
+        },
+      });
+    });
+
+    
+    // Call the function with the provided JSON data
+ 
+    
+        let req = new XMLHttpRequest();
+        let data = 0;
+        
+        req.open("GET", "https://api.jsonbin.io/v3/b/662746aee41b4d34e4e8c55e", true);
+        req.setRequestHeader("X-Master-Key", "$2a$10$fP9lhAxUB4c6wCE2KxaNpuSmc96ysSggNjyp5GoUu6LJ4p3BM0MvG");
+        req.setRequestHeader("X-Bin-Meta", "false");
+        
+        req.onreadystatechange = () => {
+          if (req.readyState == XMLHttpRequest.DONE) {
+            if (req.status == 200) {
+              data = JSON.parse(req.responseText); // Parse JSON response
+              let evn = EventSplitter(data?.record);
+              let calendar = $("#calendar").calendarGC({
+                events: evn
+              });
+              const date = new Date();
+              let day = date.getDate();
+              let month = date.getMonth() + 1;
+              let year = date.getFullYear();
+              calendar.setDate(`${year}-${month}-${day}`)
+              
+            }
+          }
+        };
+        req.send();
+        
+
+      
+
+      
+      
+    
+    
+    
+  </script>
+</body>
+</html>
 
 
 {% endblock %}
