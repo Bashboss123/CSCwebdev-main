@@ -48,6 +48,7 @@
         eventTitle: formData.get('eventTitle'),
         eventColor: formData.get('eventColor')
       };
+      event.target.reset();
     
       req.open("GET", "https://api.jsonbin.io/v3/b/662746aee41b4d34e4e8c55e", true);
       req.setRequestHeader("X-Master-Key", "$2a$10$fP9lhAxUB4c6wCE2KxaNpuSmc96ysSggNjyp5GoUu6LJ4p3BM0MvG");
