@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Event Form</title>
+</head>
+<body>
+  <h1>Event Form</h1>
+  <form id="eventForm">
+    <!-- Date Picker -->
+    <label for="eventDate">Event Date:</label>
+    <input type="date" id="eventDate" name="eventDate"><br><br>
+
+    <!-- Text Field with Placeholder -->
+    <label for="eventTitle">Event Title:</label>
+    <input type="text" id="eventTitle" name="eventTitle" placeholder="Event Title"><br><br>
+
+    <!-- Picker for Color Options -->
+    <label for="eventColor">Event Color:</label>
+    <select id="eventColor" name="eventColor">
+      <option value="red">Red</option>
+      <option value="green">Green</option>
+      <option value="blue">Blue</option>
+      <option value="yellow">Yellow</option>
+      <option value="orange">Orange</option>
+      <option value="purple">Purple</option>
+    </select><br><br>
+
+    <!-- Submit Button -->
+    <button type="submit">Submit</button>
+  </form>
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js"></script>
+  <script>
+    let req = new XMLHttpRequest();
+
+    function mergeJSON(json1, json2) {
+      const mergedJSON = { ...json1, ...json2 };
+      return mergedJSON;
+    }
+    
+    document.getElementById('eventForm').addEventListener('submit', function(event) {
+      event.preventDefault(); // Prevent default form submission
+      // Get form data
+      const formData = new FormData(event.target);
+      const eventData = {
+        eventDate: formData.get('eventDate'),
+        eventTitle: formData.get('eventTitle'),
+        eventColor: formData.get('eventColor')
+      };
+      event.target.reset();
+    
+      req.open("GET", "https://api.jsonbin.io/v3/b/662746aee41b4d34e4e8c55e", true);
+      req.setRequestHeader("X-Master-Key", "$2a$10$fP9lhAxUB4c6wCE2KxaNpuSmc96ysSggNjyp5GoUu6LJ4p3BM0MvG");
+    
+      req.onreadystatechange = () => {
+        if (req.readyState == XMLHttpRequest.DONE) {
+          if (req.status == 200) {
+            const oldData = JSON.parse(req.responseText).record; // Parse the response text into an object
+            const combinedJSON = mergeJSON(oldData, eventData);
+            console.log(JSON.stringify(eventData));
+            console.log(combinedJSON); // Log the updated data
+    
+            req.open("PUT", "https://api.jsonbin.io/v3/b/662746aee41b4d34e4e8c55e", true);
+            req.setRequestHeader("Content-Type", "application/json");
+            req.setRequestHeader("X-Master-Key", "$2a$10$fP9lhAxUB4c6wCE2KxaNpuSmc96ysSggNjyp5GoUu6LJ4p3BM0MvG");
+    
+            req.onreadystatechange = () => {
+              if (req.readyState == XMLHttpRequest.DONE) {
+                console.log("Data updated successfully.");
+              }
+            };
+    
+            req.send(JSON.stringify({ record: combinedJSON }));
+          } else {
+            console.error("Failed to fetch existing data from the server.");
+          }
+        }
+      };
+    
+      req.send();
+    });
+
+   </script>
+</body>
+</html>

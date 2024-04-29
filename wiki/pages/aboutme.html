@@ -1,9 +1,17 @@
+{% extends "layout.html" %}
+
+{% block title %}ASIJ CSC{% endblock %}
+{% block background %}{% endblock %}
+{% block lead %}{% endblock %}
+
+{% block page_content %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Circle Image Gallery</title>
+    <title>About Us</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,33 +59,35 @@
 </head>
 <body>
     <div class="container">
-        <h1 class="title">Circle Image Gallery</h1>
+        <h1 class="title">Leaders</h1>
 
         <div class="image-grid">
             <div class="circle-img">
                 <img src="image1.jpg" alt="Image 1">
-                <p>Title 1</p>
+                <p>Sasha</p>
             </div>
             <div class="circle-img">
                 <img src="image2.jpg" alt="Image 2">
-                <p>Title 2</p>
+                <p>Ryo</p>
             </div>
             <div class="circle-img">
                 <img src="image3.jpg" alt="Image 3">
-                <p>Title 3</p>
+                <p>Kaito</p>
             </div>
             <div class="circle-img">
                 <img src="image4.jpg" alt="Image 4">
-                <p>Title 4</p>
+                <p>Keita</p>
             </div>
             <div class="circle-img">
                 <img src="image5.jpg" alt="Image 5">
-                <p>Title 5</p>
+                <p>Hiroyasu</p>
             </div>
         </div>
 
         <img class="big-photo" src="bigphoto.jpg" alt="Big Photo">
-        <p class="description">Description for the big photo</p>
+        <p class="description">This is the ASIJ CSC club, committed to enabling students to express their computer science talents freely.</p>
+
+{%endblock%}
     </div>
 </body>
 </html>
