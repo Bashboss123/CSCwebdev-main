@@ -3,6 +3,25 @@
 {% block title %}ASIJ CSC{% endblock %}
 {% block background %}{% endblock %}
 {% block lead %}
+<style>
+    body {
+        background-color: #f0f0f0; 
+    }
+    .event {
+        background-color: #ffffff; 
+        border: 1px solid #cccccc; 
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+    .previousevent {
+        background-color: rgb(255, 127, 127);
+        border: 5px dashed black;
+        padding: 20px;
+        margin-bottom: 20px;
+    }
+</style>
+
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 offset-md-2">
@@ -42,12 +61,13 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <h2>Previous CS Events</h2>
-            <div class="previousevent">
-                <div class="p-2">Club Member Competitions:</div>
-                <hr>
-                <div class="p-2">-Winter Break Advent of Code</div>
+            <div class="event">
+                <h3>Previous CS Events</h3>
+                <p>Winter Break Advent of Code</p>
+                <p>Time: 1:00 PM - 3:00 PM</p>
+                <p>Location: Auditorium</p>
             </div>
-            <div class="previousevent">
+            <div class="event">
                 <div class="p-2">Conferences With Web Developers:</div>
                 <hr>
                 <div class="p-2">-Interview with Cybernut CEO!</div>
