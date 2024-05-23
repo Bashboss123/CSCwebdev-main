@@ -1,3 +1,12 @@
+{% extends "layout.html" %}
+
+{% block title %}About Page{% endblock %}
+{% block background %}{% endblock %}
+{% block lead %}{% endblock %}
+
+{% block page_content %}
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -175,14 +184,6 @@
     </style>
 </head>
 <body>
-    <header>
-        <h1>Computer Science Club <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Rubber_duck.svg/1200px-Rubber_duck.svg.png" alt="Rubber Duck"></h1>
-    </header>
-    <nav>
-        <a href="aboutme.html">About</a>
-        <a href="events.html">Events</a>
-        <a href="#contact">Contact</a>
-    </nav>
     <div class="container">
         <section id="about">
             <h2>About Us</h2>
@@ -217,8 +218,7 @@
             <p>For more information, please reach out to us at <a href="mailto:27stone-bourgeoisl@asij.ac.jp">One of our leaders</a>.</p>
         </section>
     </div>
-    <footer>
-        <p>&copy; 2024 Computer Science Club. All rights reserved.</p>
-    </footer>
 </body>
 </html>
+
+{%endblock%}
