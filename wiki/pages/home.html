@@ -6,219 +6,46 @@
 
 {% block page_content %}
 
+<div class="row top">
+    <img class="club_photo center-fit" src="static/assets/club_photo.jpeg">
+    <svg id="arrow" class="arrow" viewBox="0 0 24 24" focusable="false"><path d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z"></path><path d="M0-.75h24v24H0z" fill="none"></path></svg>
+</div>
+<div class="container">
+    <section id="about">
+        <h2>About Us</h2>
+                <p>The ASIJ Computer Science club is a club where students can pursue their interests and passion in programming and other areas of computer science. Throughout the school year, we host and participate in a variety of CS-related events such as hackathons and CTF (Capture the Flag), which are team competitions that revolve around the usage of a combination of programming, problem-solving, and collaboration. Programmers of all levels are welcome; no prior experience in programming is required. Students are also provided with a multitude of resources that can aid them in any personal project they wish to do, making the Computer Science Club the perfect place for students to explore all that CS has to offer!</p>
+        <div class="row promotions">
+            <div class="col">
+                <img class="poster" src="static/assets/poster.png"> 
+            </div>
+            <div class="col-sm">
+                <img class="promotion_img" src="static/assets/csc_promotion.jpg"> 
+            </div>
+        </div>
+    </section>
+    <section id="contact">
+        <h2>Contact Us</h2>
+        <p>For more information, please reach out to us at <a href="mailto:27stone-bourgeoisl@asij.ac.jp">One of our leaders</a>.</p>
+    </section>
+</div>
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSC Club Website</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #f4f4f9;
-            color: #333;
-            overflow-x: hidden;
-        }
-        header {
-            background: linear-gradient(45deg, #1e3c72, #2a5298);
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-        header h1 {
-            margin: 0;
-            font-size: 2.5rem;
-            position: relative;
-            z-index: 1;
-            animation: slideIn 1s forwards;
-        }
-        header img {
-            width: 50px;
-            vertical-align: middle;
-            position: relative;
-            z-index: 1;
-            animation: slideIn 1s forwards;
-        }
-        header::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('https://upload.wikimedia.org/wikipedia/commons/3/3f/Yellow_rubber_duck.jpg') center/cover no-repeat;
-            opacity: 0.1;
-            z-index: 0;
-        }
-        @keyframes slideIn {
-            from {
-                transform: translateY(-100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-        nav {
-            display: flex;
-            justify-content: center;
-            background-color: #2a5298;
-            padding: 0.5rem 0;
-        }
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin: 0 1rem;
-            font-size: 1.2rem;
-            position: relative;
-        }
-        nav a::before {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: #ffcc00;
-            visibility: hidden;
-            transform: scaleX(0);
-            transition: all 0.3s ease-in-out;
-        }
-        nav a:hover::before {
-            visibility: visible;
-            transform: scaleX(1);
-        }
-        .container {
-            padding: 2rem;
-            text-align: center;
-        }
-        .container h2 {
-            font-size: 2rem;
-            color: #2a5298;
-            margin-bottom: 1rem;
-            position: relative;
-        }
-        .container h2::after {
-            content: '';
-            width: 50px;
-            height: 3px;
-            background-color: #ffcc00;
-            display: block;
-            margin: 0.5rem auto;
-        }
-        .container p {
-            font-size: 1.2rem;
-            line-height: 1.5;
-            margin-bottom: 2rem;
-        }
-        .card {
-            display: inline-block;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            margin: 1rem;
-            width: calc(33% - 2rem);
-            text-align: left;
-            overflow: hidden;
-            position: relative;
-            animation: fadeInUp 1s ease-out forwards;
-        }
-        .card img {
-            width: 100%;
-            border-top-left-radius: 10px;
-            border-top-right-radius: 10px;
-            transition: transform 0.5s ease;
-        }
-        .card:hover img {
-            transform: scale(1.1);
-        }
-        .card-content {
-            padding: 1rem;
-        }
-        .card-content h3 {
-            margin: 0;
-            font-size: 1.5rem;
-            color: #2a5298;
-        }
-        .card-content p {
-            margin: 0.5rem 0;
-        }
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        footer {
-            background-color: #2a5298;
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-        }
-        @media (max-width: 768px) {
-            .card {
-                width: calc(50% - 2rem);
-            }
-        }
-        @media (max-width: 480px) {
-            .card {
-                width: calc(100% - 2rem);
-            }
-            header h1 {
-                font-size: 2rem;
-            }
-            nav a {
-                font-size: 1rem;
-                margin: 0 0.5rem;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <section id="about">
-            <h2>About Us</h2>
-            <p>Welcome to the Computer Science Club! Our mission is to foster a community of tech enthusiasts, programmers, and innovators. Join us for workshops, hackathons, and networking events.</p>
-        </section>
-        <section id="events">
-            <h2>Upcoming Events</h2>
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" alt="Event Image">
-                <div class="card-content">
-                    <h3>Hackathon 2024</h3>
-                    <p>Join our annual hackathon and compete with the best programmers. Date: July 20, 2025</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" alt="Event Image">
-                <div class="card-content">
-                    <h3>AI Workshop</h3>
-                    <p>Learn the basics of artificial intelligence and machine learning in this hands-on workshop. Date: July 20, 2025.</p>
-                </div>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" alt="Event Image">
-                <div class="card-content">
-                    <h3>Networking Night</h3>
-                    <p>Meet industry professionals and fellow enthusiasts at our networking night. Date: August 10, 2025.</p>
-                </div>
-            </div>
-        </section>
-        <section id="contact">
-            <h2>Contact Us</h2>
-            <p>For more information, please reach out to us at <a href="mailto:27stone-bourgeoisl@asij.ac.jp">One of our leaders</a>.</p>
-        </section>
-    </div>
-</body>
-</html>
+<script>
+   window.addEventListener('scroll', function() {
+    var arrow = document.getElementById('arrow');
+    arrow.style.opacity = 1 - window.scrollY / window.innerHeight + 0.2;
+    arrow.setAttribute('transform', 'rotate(20)');
+});
+
+var arrow = document.getElementById('arrow');
+var about = document.getElementById('about');
+    arrow.addEventListener('click', function() {
+        window.scrollTo({
+            top: about.offsetTop - 10,
+            behavior: 'smooth'
+        });
+    });
+</script>
+
+
 
 {%endblock%}

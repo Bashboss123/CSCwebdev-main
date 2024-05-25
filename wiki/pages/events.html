@@ -1,6 +1,13 @@
+{% extends "layout.html" %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% block title %}Events{% endblock %}
+{% block background %}{% endblock %}
+{% block lead %}{% endblock %}
+
+{% block page_content %}
+
+
+
 
 <head>
   <meta charset="UTF-8">
@@ -19,91 +26,111 @@
   </style>
 </head>
 
-<body>
-  <div id="calendar" style="padding: 1rem;"></div>
-  
+
+<div id="calendar" style="padding: 1rem;"></div>
+<div class="container">
+  <section id="events">
+    <h2>Upcoming Events</h2>
+    <div class="card-container">
+      <div class="card">
+          <img src="https://via.placeholder.com/300x200" alt="Event Image">
+          <div class="card-content">
+              <h3>Hackathon 2024</h3>
+              <p>Join our annual hackathon and compete with the best programmers. Date: July 20, 2025</p>
+          </div>
+      </div>
+      <div class="card">
+          <img src="https://via.placeholder.com/300x200" alt="Event Image">
+          <div class="card-content">
+              <h3>AI Workshop</h3>
+              <p>Learn the basics of artificial intelligence and machine learning in this hands-on workshop. Date: July 20, 2025.</p>
+          </div>
+      </div>
+      <div class="card">
+          <img src="https://via.placeholder.com/300x200" alt="Event Image">
+          <div class="card-content">
+              <h3>Networking Night</h3>
+              <p>Meet industry professionals and fellow enthusiasts at our networking night. Date: August 10, 2025.</p>
+          </div>
+      </div>
+  </div>
+  </section>
+</div>   
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-    
-  <script src="dist/calendar-gc.min.js"></script>
-  <script>
-    function EventSplitter(record) {
-      let events = [];
-      
-      if (record && record.eventDate) {
-        events.push({
-          date: new Date(record.eventDate),
-          eventName: record.eventTitle,
-          className: "badge bg-danger",
-          onclick(e, data) {
-            console.log(data);
-          },
-          dateColor: record.eventColor
-        });
-      }
-      
-      if (record && record.record) {
-        events = events.concat(EventSplitter(record.record));
-      }
-      
-      return events;
-    }
-    $(function (e) {
-      var calendar = $("#calendar").calendarGC({
-        dayBegin: 0,
-        prevIcon: '&#x3c;',
-        nextIcon: '&#x3e;',
 
-        onPrevMonth: function (e) {
-          console.log("prev");
-          console.log(e);
+
+
+<script src="dist/calendar-gc.min.js"></script>
+<script>
+  function EventSplitter(record) {
+    let events = [];
+    
+    if (record && record.eventDate) {
+      events.push({
+        date: new Date(record.eventDate),
+        eventName: record.eventTitle,
+        className: "badge bg-danger",
+        onclick(e, data) {
+          console.log(data);
         },
-        onNextMonth: function (e) {
-          console.log("next");
-          console.log(e);
-        },
+        dateColor: record.eventColor
       });
+    }
+    
+    if (record && record.record) {
+      events = events.concat(EventSplitter(record.record));
+    }
+    
+    return events;
+  }
+  $(function (e) {
+    var calendar = $("#calendar").calendarGC({
+      dayBegin: 0,
+      prevIcon: '&#x3c;',
+      nextIcon: '&#x3e;',
+
+      onPrevMonth: function (e) {
+        console.log("prev");
+        console.log(e);
+      },
+      onNextMonth: function (e) {
+        console.log("next");
+        console.log(e);
+      },
     });
+  });
 
-    
-    // Call the function with the provided JSON data
- 
-    
-        let req = new XMLHttpRequest();
-        let data = 0;
-        
-        req.open("GET", "https://api.jsonbin.io/v3/b/662746aee41b4d34e4e8c55e", true);
-        req.setRequestHeader("X-Master-Key", "$2a$10$fP9lhAxUB4c6wCE2KxaNpuSmc96ysSggNjyp5GoUu6LJ4p3BM0MvG");
-        req.setRequestHeader("X-Bin-Meta", "false");
-        
-        req.onreadystatechange = () => {
-          if (req.readyState == XMLHttpRequest.DONE) {
-            if (req.status == 200) {
-              data = JSON.parse(req.responseText); // Parse JSON response
-              let evn = EventSplitter(data?.record);
-              let calendar = $("#calendar").calendarGC({
-                events: evn
-              });
-              const date = new Date();
-              let day = date.getDate();
-              let month = date.getMonth() + 1;
-              let year = date.getFullYear();
-              calendar.setDate(`${year}-${month}-${day}`)
-              
-            }
+  
+  // Call the function with the provided JSON data
+
+  
+      let req = new XMLHttpRequest();
+      let data = 0;
+      
+      req.open("GET", "https://api.jsonbin.io/v3/b/662746aee41b4d34e4e8c55e", true);
+      req.setRequestHeader("X-Master-Key", "$2a$10$fP9lhAxUB4c6wCE2KxaNpuSmc96ysSggNjyp5GoUu6LJ4p3BM0MvG");
+      req.setRequestHeader("X-Bin-Meta", "false");
+      
+      req.onreadystatechange = () => {
+        if (req.readyState == XMLHttpRequest.DONE) {
+          if (req.status == 200) {
+            data = JSON.parse(req.responseText); // Parse JSON response
+            let evn = EventSplitter(data?.record);
+            let calendar = $("#calendar").calendarGC({
+              events: evn
+            });
+            const date = new Date();
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            let year = date.getFullYear();
+            calendar.setDate(`${year}-${month}-${day}`)
+            
           }
-        };
-        req.send();
-        
+        }
+      };
+      req.send();
+</script>
 
-      
-
-      
-      
-    
-    
-    
-  </script>
-</body>
-</html>
+{%endblock%}
