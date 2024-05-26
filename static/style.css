@@ -62,8 +62,6 @@ header::after {
     transition: opacity 0.5s ease;
     animation: bounce 2s infinite;
     fill: #534b7b;
-    
-    
 }
 
 .arrow.rotated {
@@ -92,11 +90,6 @@ header::after {
     -ms-transform: scale(0.9);
     transform: scale(0.9);
     transition: 1s ease;
-}
-
-#about {
-    width: 60%;
-    margin: auto;
 }
 
 @keyframes slideIn {
@@ -238,10 +231,22 @@ footer {
     }
 }
 
-footer {
-    margin-top: 10px;
+footer h2 {
+    font-size: 2rem;
+    color: #fefefe;
+    margin-bottom: 1rem;
     position: relative;
+  }
+
+ footer h2::after {
+    content: '';
+    width: 50px;
+    height: 3px;
+    background-color: #ffcc00;
+    display: block;
+    margin: 0.5rem auto;
 }
+
 
 section {
     margin: 50px;
@@ -253,3 +258,19 @@ section {
     justify-content: center;
     gap: 1rem;
 }
+
+.photo-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+}
+
+
