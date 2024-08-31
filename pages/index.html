@@ -1,15 +1,20 @@
 
+<!Doctype html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-CoSmpatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <title>CSC Home</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
     <style>
         body {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
             background-color: #f0f0f0;
+            overflow-x: hidden;
         }
 
         .navbar {
@@ -20,8 +25,9 @@
             background-color: #333;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             position: fixed;
-            width: 100%;
             top: 0;
+            left: 0;
+            width: 100%;
             z-index: 1000;
         }
 
@@ -58,7 +64,61 @@
             text-decoration: none;
         }
 
+        .section {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 48px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            clip-path: inset(0); /* Adds a clipping effect */
 
+        }
+
+        #section1 {
+        background-color: #e0b60bde;
+        clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
+
+    }
+
+    #section2 {
+        background-color: #33c4ff;
+        clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
+
+
+    }
+
+    #section3 {
+        background-color: #75ff33;
+        clip-path: polygon(0 90%, 100% 100%, 100% 0, 0 10%);
+
+
+    }
+
+    #section4 {
+        background-color: #ff33a1;
+        clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%);
+
+
+    }
+    #splinecontainer {
+    position: absolute; /* Position the container absolutely within the section */
+    top: 100px;          /* Adjust the top position */
+    right: 20px;        /* Adjust the right position */
+    width: 300px;       /* Set the desired width */
+    height: 300px;      /* Set the desired height */
+}
+
+.spline {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: auto;
+    height: auto;
+}
         /* Animation */
         @keyframes fadeInDown {
             from {
@@ -83,6 +143,13 @@
         .navbar {
             animation: fadeInDown 1s ease-in;
         }
+
+        @media (max-width: 768px) {
+        .section {
+            font-size: 32px;
+            height: 50vh;
+        }
+    }
     </style>
   </head>
   <body>
@@ -96,13 +163,134 @@
         <div class="spacer"></div>
         <a href="halloffame.html">HOF</a>
         <a href="about.html">About</a>
-    <div class="container">
-        
     </div>
-  </body>
 
-<script>
+    <div class="section" id="section1">
+        Section 1
+        <svg class="spline" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M80.15-17.15C61.7-2.15,55.74,11.78,53.85,22.09c-2.19,12,1.66,16.3-2.83,28.31-4.88,13.05-12.42,16.01-17.19,29.93-2.92,8.51-3.1,16.17-2.85,21.15" fill="none" stroke="white" stroke-miterlimit="10" stroke-width="15"/>
+        </svg>
+    </div>
+    <div class="section" id="section2">
+        Section 2
+        <svg class="spline" preserveAspectRatio="none" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <path d="M29.22-4.67C10.71,88.16,89.21,1.58,73.11,103.33" fill="none" stroke="white" stroke-miterlimit="10" stroke-width="15"/>
+          </svg>
+    </div>
+    <div class="section" id="section3">
+        Section 3
+        <svg class="spline" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M75.83-5.83c-.51,1.65-1.28,4.1-2.28,7.05-6.62,19.6-9.72,21.44-8.86,26.02,2.02,10.77,20.77,9.4,23.19,19.69,2.07,8.79-10.61,14.18-16.18,29.39-4.7,12.83-1.85,25.85,1.62,35.33" fill="none" stroke="white" stroke-miterlimit="15" stroke-width="15"/>
+        </svg>
+    </div>
+    <div class="section" id="section4">
+        Section 4
+        <svg class="spline" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M69.82-1.72c.32,1.68,3.07,13.35,4.4,15.94,3.41,6.62,7.71,7.22,8.09,10.65.62,5.56-10.24,7.56-10.65,13.89-.45,7.03,12.64,9.81,12.54,17.26-.09,6.87-11.29,8.41-11.6,16.04-.26,6.63,8.04,8.97,7.28,16.18-.53,5-4.77,6.15-4.31,10.79.42,4.31,4.27,5.2,5.66,9.44,1.01,3.07.72,7.85-4.99,15.37" fill="none" stroke="white" stroke-miterlimit="10" stroke-width="15"/>
+        </svg>
+    </div>
+</body>
 
+
+<script src="https://unpkg.com/lenis@1.1.9/dist/lenis.min.js"></script>
+  <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+// Section animations with parallax effect
+gsap.registerPlugin(ScrollTrigger);
+
+const sections = gsap.utils.toArray('.section');
+let cumulativeDuration = 0;  // Track the cumulative duration of the path animations
+
+sections.forEach((section, index) => {
+  const path = section.querySelector(".spline path");
+  const pathLength = path.getTotalLength();
+  
+  // Calculate the duration of the current path animation
+  const pathDuration = (pathLength / 100) * 0.01;  // Adjust multiplier as needed
+
+  // Animate the path
+  gsap.fromTo(path, 
+    {
+      strokeDasharray: pathLength,
+      strokeDashoffset: pathLength
+    }, 
+    {
+      strokeDashoffset: 0,
+      ease: "none",
+      duration: pathDuration,
+      scrollTrigger: {
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+        markers: false,
+        // Delay the start of the path animation
+        start: `top+=${cumulativeDuration} bottom`
+      }
+    }
+  );
+
+  // Update cumulative duration to ensure sequential path animations
+  cumulativeDuration += pathDuration;
+
+  // Animate the section
+  gsap.fromTo(section, 
+    {
+      opacity: 0
+    }, 
+    {
+      opacity: 1,
+      duration: 1.5,
+      ease: "power4.out",
+      scrollTrigger: {
+        trigger: section,
+        start: "top bottom",
+        end: "bottom top",
+        scrub: true,
+        markers: false
+      }
+    }
+  );
+});
+
+    // Section animations
+
+        // Continuous clip path definitions
+        function getInitialClipPath(index) {
+            switch (index) {
+                case 0: return 'polygon(0 0, 100% 10%, 100% 100%, 0 90%)';
+                case 1: return 'polygon(0 90%, 100% 100%, 100% 0, 0 10%)';
+                case 2: return 'polygon(0 10%, 100% 0, 100% 90%, 0 100%)';
+                case 3: return 'polygon(0 100%, 100% 90%, 100% 0, 0 10%)';
+                default: return 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+            }
+        }
+
+        function getFinalClipPath(index) {
+            switch (index) {
+                case 0: return 'polygon(0 10%, 100% 0, 100% 90%, 0 100%)';
+                case 1: return 'polygon(0 0, 100% 10%, 100% 100%, 0 90%)';
+                case 2: return 'polygon(0 90%, 100% 100%, 100% 0, 0 10%)';
+                case 3: return 'polygon(0 100%, 100% 90%, 100% 0, 0 10%)';
+                default: return 'polygon(0 0, 100% 0, 100% 100%, 0 100%)';
+            }
+        }
+    const lenis = new Lenis({
+            duration: 1.2,  // Adjust scrolling duration (in seconds)
+            smooth: true,
+            direction: 'vertical',  // Scroll direction
+            gestureDirection: 'vertical',
+            smoothTouch: true,  // Enable smooth touch scrolling
+            touchMultiplier: 2,  // Increase touch scrolling speed
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
 </script>
 
 
