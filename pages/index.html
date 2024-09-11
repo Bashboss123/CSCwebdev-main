@@ -9,12 +9,40 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/lenis@1.1.9/dist/lenis.css">
     <style>
+        @font-face {
+            font-family: "Raleway";
+            src: url("../static/fonts/Raleway-Heavy.ttf");
+        }
         body {
             margin: 0;
             padding: 0;
             font-family: 'Arial', sans-serif;
-            background-color: #f0f0f0;
+            background-color: #fff;
             overflow-x: hidden;
+        }
+
+
+
+        html {
+            scrollbar-width: none; 
+            scroll-behavior: smooth;
+        }
+        
+        html::-webkit-scrollbar {
+            display: none;
+        }
+        #style-1::-webkit-scrollbar-track {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.1);
+            background-color: transparent;
+        }
+        
+        #style-1::-webkit-scrollbar {
+            background-color: transparent;
+        }
+        
+        #style-1::-webkit-scrollbar-thumb {
+            -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+            background-color: transparent;
         }
 
         .navbar {
@@ -22,7 +50,7 @@
             justify-content: center;
             align-items: center;
             padding: 20px;
-            background-color: #333;
+            background-color: #0D1F2D;
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.5);
             position: fixed;
             top: 0;
@@ -48,12 +76,12 @@
 
 
         .navbar a:hover {
-            color: #ffcc00;
+            color: #FFD046;
         }
 
         .navbar-center {
 
-            color: #ffcc00;
+            color: #FFD046;
             letter-spacing: 2px;
         }
 
@@ -75,34 +103,46 @@
             position: relative;
             overflow: hidden;
             clip-path: inset(0); /* Adds a clipping effect */
-
+            z-index: 100;
+        }
+        h2 {
+            font-size: 10rem;
+            font-family: 'Raleway';
+            font-style: normal;
+            padding: 0px;
+            margin: 0px;
+        }
+        p {
+            padding: -20px 0px;
+            margin: 0px;
+            font-size:2rem;
         }
 
         #section1 {
-        background-color: #e0b60bde;
+        background-color: #FFD046;
         clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%);
-
+        z-index: 100;
     }
 
     #section2 {
-        background-color: #33c4ff;
+        background-color: #6B2737;
         clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 90%);
 
-
+        z-index: 100;
     }
 
     #section3 {
-        background-color: #75ff33;
+        background-color: #FFD046;
         clip-path: polygon(0 90%, 100% 100%, 100% 0, 0 10%);
 
-
+        z-index: 100;
     }
 
     #section4 {
-        background-color: #ff33a1;
+        background-color: #6B2737;
         clip-path: polygon(0 100%, 100% 90%, 100% 0, 0 10%);
 
-
+        z-index: 100;
     }
     #splinecontainer {
     position: absolute; /* Position the container absolutely within the section */
@@ -112,12 +152,50 @@
     height: 300px;      /* Set the desired height */
 }
 
+
+
 .spline {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    width: auto;
-    height: auto;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+}
+
+.content-wrapper {
+    position: relative;
+    z-index: 2;
+}
+.content {
+    font-size: 5rem;
+    color: white;
+    position: relative;
+    text-align: center;
+    z-index: 2;
+}
+
+.spline-base {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    visibility: hidden;
+}
+
+.spline-overlay {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 3;
+    mix-blend-mode: exclusion;
 }
         /* Animation */
         @keyframes fadeInDown {
@@ -147,7 +225,7 @@
         @media (max-width: 768px) {
         .section {
             font-size: 32px;
-            height: 50vh;
+            height: 100vh;
         }
     }
     </style>
@@ -164,29 +242,44 @@
         <a href="halloffame.html">HOF</a>
         <a href="about.html">About</a>
     </div>
-
     <div class="section" id="section1">
-        Section 1
-        <svg class="spline" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M80.15-17.15C61.7-2.15,55.74,11.78,53.85,22.09c-2.19,12,1.66,16.3-2.83,28.31-4.88,13.05-12.42,16.01-17.19,29.93-2.92,8.51-3.1,16.17-2.85,21.15" fill="none" stroke="white" stroke-miterlimit="10" stroke-width="15"/>
+        <!-- Base Path (White) -->
+        <svg class="spline-base" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M80.15-17.15C61.7-2.15,55.74,11.78,53.85,22.09c-2.19,12,1.66,16.3-2.83,28.31-4.88,13.05-12.42,16.01-17.19,29.93-2.92,8.51-3.1,16.17-2.85,21.15" fill="none" stroke="black" stroke-miterlimit="10" stroke-width="20"/>
         </svg>
+    
+        <!-- Content that will be affected by the overlay -->
+        <div class="content-wrapper">
+            <div class="content">
+                <h2>About Us</h2>
+                <p>The ASIJ CSC club is for those who love to learn anything about computer science, in this club, you'll be able to learn any niche you want and create projects based on that.</p>
+            </div>
+        </div>
+    
+        <!-- Overlay Path (Black with Opacity) -->
+        <svg class="spline-overlay" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M80.15-17.15C61.7-2.15,55.74,11.78,53.85,22.09c-2.19,12,1.66,16.3-2.83,28.31-4.88,13.05-12.42,16.01-17.19,29.93-2.92,8.51-3.1,16.17-2.85,21.15" fill="none" stroke="#fff" stroke-miterlimit="10" stroke-width="20" />
+        </svg>
+    </div>
+
+        
     </div>
     <div class="section" id="section2">
         Section 2
-        <svg class="spline" preserveAspectRatio="none" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
-            <path d="M29.22-4.67C10.71,88.16,89.21,1.58,73.11,103.33" fill="none" stroke="white" stroke-miterlimit="10" stroke-width="15"/>
+        <svg class="spline-overlay" preserveAspectRatio="none" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+            <path d="M29.22-4.67C10.71,88.16,89.21,1.58,73.11,103.33" fill="none" stroke="white" stroke-miterlimit="10" stroke-width="20"/>
           </svg>
     </div>
     <div class="section" id="section3">
         Section 3
-        <svg class="spline" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M75.83-5.83c-.51,1.65-1.28,4.1-2.28,7.05-6.62,19.6-9.72,21.44-8.86,26.02,2.02,10.77,20.77,9.4,23.19,19.69,2.07,8.79-10.61,14.18-16.18,29.39-4.7,12.83-1.85,25.85,1.62,35.33" fill="none" stroke="white" stroke-miterlimit="15" stroke-width="15"/>
+        <svg class="spline-overlay" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M75.83-5.83c-.51,1.65-1.28,4.1-2.28,7.05-6.62,19.6-9.72,21.44-8.86,26.02,2.02,10.77,20.77,9.4,23.19,19.69,2.07,8.79-10.61,14.18-16.18,29.39-4.7,12.83-1.85,25.85,1.62,35.33" fill="none" stroke="white" stroke-miterlimit="15" stroke-width="20"/>
         </svg>
     </div>
     <div class="section" id="section4">
         Section 4
-        <svg class="spline" viewBox="0 0 100 100" preserveAspectRatio="none">
-            <path d="M69.82-1.72c.32,1.68,3.07,13.35,4.4,15.94,3.41,6.62,7.71,7.22,8.09,10.65.62,5.56-10.24,7.56-10.65,13.89-.45,7.03,12.64,9.81,12.54,17.26-.09,6.87-11.29,8.41-11.6,16.04-.26,6.63,8.04,8.97,7.28,16.18-.53,5-4.77,6.15-4.31,10.79.42,4.31,4.27,5.2,5.66,9.44,1.01,3.07.72,7.85-4.99,15.37" fill="none" stroke="white" stroke-miterlimit="10" stroke-width="15"/>
+        <svg class="spline-overlay" viewBox="0 0 100 100" preserveAspectRatio="none">
+            <path d="M69.82-1.72c.32,1.68,3.07,13.35,4.4,15.94,3.41,6.62,7.71,7.22,8.09,10.65.62,5.56-10.24,7.56-10.65,13.89-.45,7.03,12.64,9.81,12.54,17.26-.09,6.87-11.29,8.41-11.6,16.04-.26,6.63,8.04,8.97,7.28,16.18-.53,5-4.77,6.15-4.31,10.79.42,4.31,4.27,5.2,5.66,9.44,1.01,3.07.72,7.85-4.99,15.37" fill="none" stroke="white" stroke-miterlimit="10" stroke-width="20"/>
         </svg>
     </div>
 </body>
@@ -201,13 +294,16 @@ gsap.registerPlugin(ScrollTrigger);
 
 const sections = gsap.utils.toArray('.section');
 let cumulativeDuration = 0;  // Track the cumulative duration of the path animations
-
+document.addEventListener('DOMContentLoaded', () => {
 sections.forEach((section, index) => {
-  const path = section.querySelector(".spline path");
-  const pathLength = path.getTotalLength();
+  const path = section.querySelector(".spline-overlay path");
+  let pathLength = path.getTotalLength();
+  if (index==0) {
+    pathLength+=10;
+  }
   
   // Calculate the duration of the current path animation
-  const pathDuration = (pathLength / 100) * 0.01;  // Adjust multiplier as needed
+  const pathDuration = (pathLength / 100) * 50;  // Adjust multiplier as needed
 
   // Animate the path
   gsap.fromTo(path, 
@@ -254,6 +350,7 @@ sections.forEach((section, index) => {
   );
 });
 
+
     // Section animations
 
         // Continuous clip path definitions
@@ -291,6 +388,7 @@ sections.forEach((section, index) => {
         }
 
         requestAnimationFrame(raf);
+    });
 </script>
 
 
