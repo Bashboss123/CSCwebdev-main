@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block title %}ASIJ CSC{% endblock %}
+{% block background %}{% endblock %}
+{% block lead %}{% endblock %}
+
+{% block page_content %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circle Image Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .image-grid {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 20px;
+        }
+        .circle-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 10px;
+        }
+        .circle-img img {
+            width: 100%;
+            height: auto;
+            border-radius: 50%;
+        }
+        .big-photo {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto 20px;
+        }
+        .description {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="title">Circle Image Gallery</h1>
+
+        <div class="image-grid">
+            <div class="circle-img">
+                <img src="image1.jpg" alt="Image 1">
+                <p>Title 1</p>
+            </div>
+            <div class="circle-img">
+                <img src="image2.jpg" alt="Image 2">
+                <p>Title 2</p>
+            </div>
+            <div class="circle-img">
+                <img src="image3.jpg" alt="Image 3">
+                <p>Title 3</p>
+            </div>
+            <div class="circle-img">
+                <img src="image4.jpg" alt="Image 4">
+                <p>Title 4</p>
+            </div>
+            <div class="circle-img">
+                <img src="image5.jpg" alt="Image 5">
+                <p>Title 5</p>
+            </div>
+        </div>
+
+        <img class="big-photo" src="bigphoto.jpg" alt="Big Photo">
+        <p class="description">Description for the big photo</p>
+
+{%endblock%}
+    </div>
+</body>
+</html>
