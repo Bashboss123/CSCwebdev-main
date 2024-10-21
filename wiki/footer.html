@@ -1,3 +1,21 @@
-<footer>
-    <p>&copy; 2024 Computer Science Club. All rights reserved.</p>
-</footer>
+<div id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                <h4>Quick Links</h4>
+                <ul>
+                    <li><a href="{{ url_for('pages', page='home') }}">Home</a></li>
+                    <li><a href="{{ url_for('pages', page='events') }}">Events</a></li>
+                    <li><a href="{{ url_for('pages', page='about') }}">About</a></li>
+                </ul>
+            </div>
+            <div class="col-md-4">
+                <h4>Contact Us</h4>
+                <p>ASIJ CSC</p>
+                <p>1-1-1 Chofu, Tokyo, Japan</p>
+                <p>Phone: +81 3-3409-3409</p>
+                <p>Email:</p>
+            </div>
+        </div>
+    </div>
+</div>
